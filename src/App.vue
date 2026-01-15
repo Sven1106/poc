@@ -1,18 +1,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
-import ProductList from './features/products/GetProducts/ProductList.vue';
+import Home from './pages/Home.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { VueQueryDevtools, ProductList },
-  setup() {
-
-  },
+  components: { VueQueryDevtools, Home },
 })
 </script>
 
 <template>
-  <ProductList />
+  <Home />
   <VueQueryDevtools />
-</template>
+</template>   
