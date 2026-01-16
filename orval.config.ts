@@ -12,19 +12,10 @@ export default defineConfig({
       httpClient: "fetch",
       clean: true,
       urlEncodeParameters: true,
-
-      // baseUrl: {
-      //   getBaseUrlFromSpecification: true,
-      // },
       override: {
         fetch: {
           includeHttpResponseReturnType: false,
-          // forceSuccessResponse: true,
         },
-        // mutator: {
-        //   path: "./src/api/mutator/custom-instance.ts",
-        //   name: "customInstance",
-        // },
         mutator: {
           path: "./src/api/mutator/custom-fetch.ts",
           name: "customFetch",

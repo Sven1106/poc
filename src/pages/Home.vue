@@ -27,42 +27,20 @@ export default defineComponent({
 </script>
 
 <template>
-    <div class="home-container">
-        <div class="product-list-section">
+    <div style="display: flex; gap: 2rem;">
+        <div style="flex: 1;">
             <h1>Products</h1>
             <ProductList @product-selected="handleProductSelected" />
         </div>
 
-        <div class="product-details-section">
+        <div style="flex: 1;">
             <h1>Product Details</h1>
-            <ProductDetails v-if="selectedProductId" :key="selectedProductId" :id="selectedProductId" >
-                <DeleteProductButton :id="selectedProductId" />
+            <ProductDetails v-if="selectedProductId" :key="selectedProductId" :id="selectedProductId">
+                <DeleteProductButton :id="selectedProductId" @deleted="selectedProductId = null" />
             </ProductDetails>
-            <div v-else class="no-selection">
+            <div v-else style=" padding: 2rem;    text-align: center;    color: #666;    font-style: italic;">
                 Select a product to view details
             </div>
         </div>
     </div>
 </template>
-
-<style scoped>
-.home-container {
-    display: flex;
-    gap: 2rem;
-}
-
-.product-list-section {
-    flex: 1;
-}
-
-.product-details-section {
-    flex: 1;
-}
-
-.no-selection {
-    padding: 2rem;
-    text-align: center;
-    color: #666;
-    font-style: italic;
-}
-</style>

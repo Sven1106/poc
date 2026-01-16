@@ -2,10 +2,14 @@
 import { defineComponent, ref, watch } from 'vue'
 import { useGetAllProducts } from '@/api/generated/client';
 import type { Product } from '@/api/generated/models';
+import DataTable from "primevue/datatable";
+import Column from 'primevue/column';
+
 
 export default defineComponent({
   name: 'ProductList',
   emits: ['product-selected'],
+  components: { DataTable, Column },
   setup(_, { emit }) {
     const { data, error, isFetching, isPending } = useGetAllProducts();
     const selectedProduct = ref<Product | null>(null);

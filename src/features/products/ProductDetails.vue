@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import { useGetProductById } from '@/api/generated/client';
+import Card from 'primevue/card';
 
 
 export default defineComponent({
@@ -11,6 +12,7 @@ export default defineComponent({
       required: true
     }
   },
+  components: { Card },
   setup(props) {
     const { data, error, isFetching, isPending } = useGetProductById(props.id);
 
