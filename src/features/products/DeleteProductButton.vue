@@ -1,7 +1,6 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import { useDeleteProduct, invalidateGetAllProducts } from '@/api/generated/client';
-import { useQueryClient } from '@tanstack/vue-query';
 import Button from 'primevue/button';
 export default defineComponent({
     name: 'DeleteProductButton',
@@ -10,24 +9,22 @@ export default defineComponent({
     props: {
         id: {
             type: Number,
-            required: true
-        }
+            required: true,
+        },
     },
     setup(_, { emit }) {
-        const queryClient = useQueryClient()
-
         const { mutate, error, isPending } = useDeleteProduct({
             mutation: {
-                onSuccess: (_data, variables) => {
-                    invalidateGetAllProducts(queryClient)
-                    emit('deleted', variables.id)
+                onSuccess: (_, { id }, __, { client }) => {
+                    invalidateGetAllProducts(client);
+                    emit('deleted', id);
                 },
             },
-        })
+        });
 
-        return { mutate, error, isPending }
+        return { mutate, error, isPending };
     },
-})
+});
 </script>
 
 <template>
