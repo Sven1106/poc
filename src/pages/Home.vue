@@ -1,8 +1,8 @@
 <script lang="ts">
 import { defineComponent, ref } from 'vue';
-import ProductList from '@/features/products/ProductList.vue';
-import ProductDetails from '@/features/products/ProductDetails.vue';
-import DeleteProductButton from '@/features/products/DeleteProductButton.vue';
+import ProductList from '@/features/products/getProducts/ProductList.vue';
+import ProductDetails from '@/features/products/getProduct/ProductDetails.vue';
+import DeleteProductButton from '@/features/products/deleteProduct/DeleteProductButton.vue';
 
 export default defineComponent({
     name: 'Home',
