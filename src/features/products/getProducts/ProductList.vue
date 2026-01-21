@@ -1,16 +1,16 @@
 <script lang="ts">
 import { defineComponent, ref, watch } from 'vue';
-import { useGetAllProducts } from '@/api/generated/client';
-import type { Product } from '@/api/generated/models';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
+import type { Product } from '@/api/generated/models';
+import { useGetProducts } from './adapters/useGetProducts';
 
 export default defineComponent({
   name: 'ProductList',
   emits: ['product-selected'],
   components: { DataTable, Column },
   setup(_, { emit }) {
-    const { data, error, isFetching, isPending } = useGetAllProducts();
+    const { products, error, isLoading } = useGetProducts();
     const selectedProduct = ref<Product | null>(null);
 
     watch(selectedProduct, (newProduct) => {
@@ -22,10 +22,9 @@ export default defineComponent({
     });
 
     return {
-      data,
+      products,
       error,
-      isFetching,
-      isPending,
+      isLoading,
       selectedProduct,
     };
   },
@@ -33,12 +32,12 @@ export default defineComponent({
 </script>
 
 <template>
-  <div v-if="isPending">Loading...</div>
+  <div v-if="isLoading">Loading...</div>
   <div v-else-if="error">An error has occurred: {{ error }}</div>
   <DataTable
-    v-else-if="data"
+    v-else-if="products"
     v-model:selection="selectedProduct"
-    :value="data"
+    :value="products"
     dataKey="id"
     tableStyle="min-width: 50rem"
   >

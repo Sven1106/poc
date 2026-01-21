@@ -1,15 +1,16 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
+const { devtools: Devtools } = (await import('./serverState/adapters/serverStateAdapter'))
+  .ServerStateAdapter;
 import Home from './pages/Home.vue';
 
 export default defineComponent({
   name: 'App',
-  components: { VueQueryDevtools, Home },
+  components: { Devtools, Home },
 });
 </script>
 
 <template>
   <Home />
-  <VueQueryDevtools />
+  <Devtools />
 </template>

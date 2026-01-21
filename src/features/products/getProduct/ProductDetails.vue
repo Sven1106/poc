@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useGetProductById } from '@/api/generated/client';
 import Card from 'primevue/card';
+import { useGetProduct } from './adapters/useGetProduct';
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -13,27 +13,26 @@ export default defineComponent({
   },
   components: { Card },
   setup(props) {
-    const { data, error, isFetching, isPending } = useGetProductById(props.id);
+    const { product, isLoading, error } = useGetProduct(props.id);
 
     return {
-      data,
+      product,
+      isLoading,
       error,
-      isFetching,
-      isPending,
     };
   },
 });
 </script>
 
 <template>
-  <div v-if="isPending">Loading...</div>
+  <div v-if="isLoading">Loading...</div>
   <div v-else-if="error">An error has occurred: {{ error }}</div>
 
-  <Card v-else-if="data" style="width: 25rem; overflow: hidden">
-    <template #title>{{ data.title }}</template>
+  <Card v-else-if="product" style="width: 25rem; overflow: hidden">
+    <template #title>{{ product.title }}</template>
     <template #content>
       <p class="m-0">
-        {{ data.description }}
+        {{ product.description }}
       </p>
     </template>
     <template #footer>
