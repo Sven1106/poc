@@ -4,12 +4,12 @@ import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import Home from './pages/Home.vue';
 
 export default defineComponent({
-    name: 'App',
-    components: { VueQueryDevtools, Home },
+  name: 'App',
+  components: { VueQueryDevtools, Home },
 });
 </script>
 
 <template>
-    <Home />
-    <VueQueryDevtools />
+  <Home />
+  <VueQueryDevtools />
 </template>
