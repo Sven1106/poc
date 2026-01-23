@@ -1,9 +1,9 @@
 import { computed } from 'vue';
 import { useGetAllProducts } from '@/api/generated/client';
-import type { GetProductsResult } from '../ports/getProductsResult';
+import type { GetProductsResult } from '@/serverState/interfaces/getProductsResult';
 
 export const useGetProducts = (): GetProductsResult => {
-  const { isLoading, data, error } = useGetAllProducts();
+  const { data, isLoading, error } = useGetAllProducts();
 
   return {
     products: computed(() => data.value),

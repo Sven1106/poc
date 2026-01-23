@@ -1,7 +1,9 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import Button from 'primevue/button';
-import { useDeleteProduct } from './adapters/useDeleteProduct';
+import { ServerStateKey } from '@/serverState/interfaces/IServerState';
+import type { IServerState } from '@/serverState/interfaces/IServerState';
+
 export default defineComponent({
   name: 'DeleteProductButton',
   emits: ['deleted'],
@@ -13,10 +15,11 @@ export default defineComponent({
     },
   },
   setup(_, { emit }) {
-    const { deleteProduct, error } = useDeleteProduct({
+    const serverState = inject<IServerState>(ServerStateKey);
+
+    const { deleteProduct, error } = serverState!.useDeleteProduct({
       onSuccess: (id) => emit('deleted', id),
     });
-
     return { deleteProduct, error };
   },
 });

@@ -2,14 +2,18 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
-import { ServerStateAdapter } from './serverState/adapters/serverStateAdapter';
+import { TanstackAdapter } from './serverState/adapters/tanstack/tanstackAdapter';
+import { ServerStateKey } from './serverState/interfaces/IServerState';
 
 const app = createApp(App);
 
-app.use(ServerStateAdapter.plugin).use(PrimeVue, {
-  theme: {
-    preset: Aura,
-  },
-});
+app
+  .provide(ServerStateKey, TanstackAdapter)
+  .use(TanstackAdapter.plugin)
+  .use(PrimeVue, {
+    theme: {
+      preset: Aura,
+    },
+  });
 
 app.mount('#app');

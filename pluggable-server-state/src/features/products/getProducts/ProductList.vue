@@ -1,16 +1,18 @@
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import { defineComponent, inject, ref, watch } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import type { Product } from '@/api/generated/models';
-import { useGetProducts } from './adapters/useGetProducts';
+import { type IServerState, ServerStateKey } from '@/serverState/interfaces/IServerState';
 
 export default defineComponent({
   name: 'ProductList',
   emits: ['product-selected'],
   components: { DataTable, Column },
   setup(_, { emit }) {
-    const { products, error, isLoading } = useGetProducts();
+    const serverState = inject<IServerState>(ServerStateKey);
+
+    const { products, error, isLoading } = serverState!.useGetProducts();
     const selectedProduct = ref<Product | null>(null);
 
     watch(selectedProduct, (newProduct) => {

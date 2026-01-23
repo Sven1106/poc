@@ -1,7 +1,7 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, inject } from 'vue';
 import Card from 'primevue/card';
-import { useGetProduct } from './adapters/useGetProduct';
+import { type IServerState, ServerStateKey } from '@/serverState/interfaces/IServerState';
 
 export default defineComponent({
   name: 'ProductDetails',
@@ -13,7 +13,8 @@ export default defineComponent({
   },
   components: { Card },
   setup(props) {
-    const { product, isLoading, error } = useGetProduct(props.id);
+    const serverState = inject<IServerState>(ServerStateKey);
+    const { product, isLoading, error } = serverState!.useGetProduct(props.id);
 
     return {
       product,

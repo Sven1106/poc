@@ -2,8 +2,8 @@ import {
   useDeleteProduct as useDeleteProductMutation,
   invalidateGetAllProducts,
 } from '@/api/generated/client';
-import type { DeleteProductResult } from '../ports/deleteProductResult';
-import type { DeleteProductOptions } from '../ports/deleteProductOptions';
+import type { DeleteProductResult } from '@/serverState/interfaces/deleteProductResult';
+import type { DeleteProductOptions } from '@/serverState/interfaces/deleteProductOptions';
 
 export const useDeleteProduct = (options?: DeleteProductOptions): DeleteProductResult => {
   const { mutate, error } = useDeleteProductMutation({

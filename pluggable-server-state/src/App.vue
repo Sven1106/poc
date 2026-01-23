@@ -1,16 +1,21 @@
 <script lang="ts">
-import { defineComponent } from 'vue';
-const { devtools: Devtools } = (await import('./serverState/adapters/serverStateAdapter'))
-  .ServerStateAdapter;
+import { defineComponent, inject, h } from 'vue';
 import Home from './pages/Home.vue';
+import { ServerStateKey } from './serverState/interfaces/IServerState';
+import type { IServerState } from './serverState/interfaces/IServerState';
 
 export default defineComponent({
   name: 'App',
-  components: { Devtools, Home },
+  components: { Home },
+  setup() {
+    const serverState = inject<IServerState>(ServerStateKey);
+    if (!serverState) throw new Error('ServerState not provided');
+    return { Devtools: serverState.devtools };
+  },
 });
 </script>
 
 <template>
   <Home />
-  <Devtools />
+  <component :is="Devtools" />
 </template>
