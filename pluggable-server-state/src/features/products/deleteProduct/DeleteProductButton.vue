@@ -16,8 +16,10 @@ export default defineComponent({
   },
   setup(_, { emit }) {
     const serverState = inject<IServerState>(ServerStateKey);
-
-    const { deleteProduct, error } = serverState!.useDeleteProduct({
+    if (!serverState) {
+      throw new Error('🚀 ~ DeleteProductButton.vue:20 ~ ServerState not provided in main.ts');
+    }
+    const { deleteProduct, error } = serverState.useDeleteProduct({
       onSuccess: (id) => emit('deleted', id),
     });
     return { deleteProduct, error };

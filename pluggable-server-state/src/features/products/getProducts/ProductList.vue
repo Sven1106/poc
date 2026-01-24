@@ -11,8 +11,10 @@ export default defineComponent({
   components: { DataTable, Column },
   setup(_, { emit }) {
     const serverState = inject<IServerState>(ServerStateKey);
-
-    const { products, error, isLoading } = serverState!.useGetProducts();
+    if (!serverState) {
+      throw new Error('🚀 ~ ProductList.vue:16 ~ ServerState not provided in main.ts');
+    }
+    const { products, error, isLoading } = serverState.useGetProducts();
     const selectedProduct = ref<Product | null>(null);
 
     watch(selectedProduct, (newProduct) => {

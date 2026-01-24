@@ -14,7 +14,10 @@ export default defineComponent({
   components: { Card },
   setup(props) {
     const serverState = inject<IServerState>(ServerStateKey);
-    const { product, isLoading, error } = serverState!.useGetProduct(props.id);
+    if (!serverState) {
+      throw new Error('🚀 ~ ProductDetails.vue:18 ~ ServerState not provided in main.ts');
+    }
+    const { product, isLoading, error } = serverState.useGetProduct(props.id);
 
     return {
       product,
