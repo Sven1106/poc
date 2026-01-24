@@ -1,5 +1,5 @@
 import 'vue';
-import type { IServerState } from './interfaces/IServerState';
+import type { ServerState } from './interfaces/ServerState';
 
 declare module 'vue' {
   export interface App {
@@ -8,6 +8,6 @@ declare module 'vue' {
      *
      * @param adapter The server state adapter to provide.
      */
-    provideServerStateAdapter(adapter: IServerState): this;
+    provideServerStateAdapter(adapter: ServerState): this;
   }
 }

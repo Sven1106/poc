@@ -1,20 +1,16 @@
 <script lang="ts">
-import { defineComponent, inject, ref, watch } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import type { Product } from '@/api/generated/models';
-import { type IServerState, ServerStateKey } from '@/serverState/interfaces/IServerState';
+import { useEndpoint } from '@/serverState/useEndpoint';
 
 export default defineComponent({
   name: 'ProductList',
   emits: ['product-selected'],
   components: { DataTable, Column },
   setup(_, { emit }) {
-    const serverState = inject<IServerState>(ServerStateKey);
-    if (!serverState) {
-      throw new Error('🚀 ~ ProductList.vue:16 ~ ServerState not provided in main.ts');
-    }
-    const { products, error, isLoading } = serverState.useGetProducts();
+    const { products, error, isLoading } = useEndpoint('useGetProducts')();
     const selectedProduct = ref<Product | null>(null);
 
     watch(selectedProduct, (newProduct) => {
