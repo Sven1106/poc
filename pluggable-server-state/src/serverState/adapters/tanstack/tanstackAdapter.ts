@@ -1,19 +1,15 @@
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 import { type DefineComponent } from 'vue';
-import type { IServerState } from '@/serverState/interfaces/IServerState';
-import { useDeleteProduct } from './useDeleteProduct';
-import { useGetProduct } from './useGetProduct';
-import { useGetProducts } from './useGetProducts';
+import { ProductsResourceAdapter } from '@/serverState/adapters/tanstack/productsResourceAdapter';
+import type { ServerState } from '@/serverState';
 
-export const TanstackAdapter: IServerState = {
+export const TanstackAdapter: ServerState = {
   plugin: {
     install(app) {
       app.use(VueQueryPlugin);
     },
   },
   devtools: VueQueryDevtools as DefineComponent,
-  useDeleteProduct,
-  useGetProduct,
-  useGetProducts,
+  productsResource: ProductsResourceAdapter,
 };

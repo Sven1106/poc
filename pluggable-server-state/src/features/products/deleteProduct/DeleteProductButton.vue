@@ -1,8 +1,7 @@
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
+import { defineComponent } from 'vue';
 import Button from 'primevue/button';
-import { ServerStateKey } from '@/serverState/interfaces/IServerState';
-import type { IServerState } from '@/serverState/interfaces/IServerState';
+import { useProductsResource } from '@/serverState';
 
 export default defineComponent({
   name: 'DeleteProductButton',
@@ -14,13 +13,9 @@ export default defineComponent({
       required: true,
     },
   },
-  setup(_, { emit }) {
-    const serverState = inject<IServerState>(ServerStateKey);
-    if (!serverState) {
-      throw new Error('🚀 ~ DeleteProductButton.vue:20 ~ ServerState not provided in main.ts');
-    }
-    const { deleteProduct, error } = serverState.useDeleteProduct({
-      onSuccess: (id) => emit('deleted', id),
+  setup(props, { emit }) {
+    const { deleteProduct, error } = useProductsResource().remove(props.id, {
+      onSuccess: () => emit('deleted', props.id),
     });
     return { deleteProduct, error };
   },
