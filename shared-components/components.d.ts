@@ -11,7 +11,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Button: typeof import('primevue/button')['default']
+    Message: typeof import('@primevue-ce/primevue/message')['default']
     'Message.ce': typeof import('./src/components/Message.ce.vue')['default']
   }
 }

@@ -5,6 +5,7 @@ import Message from '@/components/Message.ce.vue';
 <template>
   <h1>You did it!</h1>
   <Message />
+  <br />
   <ce-message></ce-message>
 </template>
 
