@@ -11,19 +11,16 @@ importers:
       '@primeuix/themes':
         specifier: ^2.0.3
         version: 2.0.3
-      '@primevue/auto-import-resolver':
-        specifier: ^4.5.4
-        version: 4.5.4
       primevue:
         specifier: ^4.5.4
         version: 4.5.4(vue@3.5.27(typescript@5.9.3))
-      unplugin-vue-components:
-        specifier: ^31.0.0
-        version: 31.0.0(vue@3.5.27(typescript@5.9.3))
       vue:
         specifier: ^3.5.26
         version: 3.5.27(typescript@5.9.3)
     devDependencies:
+      '@primevue/auto-import-resolver':
+        specifier: ^4.5.4
+        version: 4.5.4
       '@tsconfig/node24':
         specifier: ^24.0.4
         version: 24.0.4
@@ -45,6 +42,9 @@ importers:
       typescript:
         specifier: ~5.9.3
         version: 5.9.3
+      unplugin-vue-components:
+        specifier: ^31.0.0
+        version: 31.0.0(vue@3.5.27(typescript@5.9.3))
       vite:
         specifier: beta
         version: 8.0.0-beta.10(@types/node@24.10.9)

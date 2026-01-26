@@ -1,4 +1,4 @@
-<script setup lang="ts"></script>
+<script lang="ts"></script>
 
 <template>
   <p class="red-text">
