@@ -11,9 +11,11 @@
     "type-check": "vue-tsc --build"
   },
   "dependencies": {
+    "@fontsource/roboto": "^5.2.9",
     "@primeuix-ce/themes": "^2.0.2",
     "@primevue-ce/primevue": "^4.5.2",
-    "vue": "^3.5.26"
+    "vue": "^3.5.26",
+    "vuetify": "^3.11.7"
   },
   "devDependencies": {
     "@primevue-ce/auto-import-resolver": "^4.5.2",

@@ -11,6 +11,9 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
+    AutoComplete: typeof import('@primevue-ce/primevue/autocomplete')['default']
+    'Autocomplete.ce': typeof import('./src/components/Autocomplete.ce.vue')['default']
+    Button: typeof import('@primevue-ce/primevue/button')['default']
     Message: typeof import('@primevue-ce/primevue/message')['default']
     'Message.ce': typeof import('./src/components/Message.ce.vue')['default']
   }
