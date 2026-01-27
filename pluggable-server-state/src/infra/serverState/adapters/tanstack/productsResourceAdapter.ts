@@ -4,7 +4,7 @@ import {
   useGetAllProducts,
   useGetProductById,
 } from '@/api/generated/client';
-import type { ProductsResource } from '@/serverState';
+import type { ProductsResource } from '@/infra/serverState';
 import { computed } from 'vue';
 
 export const ProductsResourceAdapter: ProductsResource = {

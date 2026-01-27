@@ -1,5 +1,12 @@
-import type { ProductsResource } from '@/serverState/interfaces/productsResource';
+import type { ProductsResource } from '@/infra/serverState/interfaces/productsResource';
 import { defineComponent, h, inject, type App, type DefineComponent, type InjectionKey } from 'vue';
+/*
+register in main.ts like this:
+app
+.provide(ServerStateKey, TanstackAdapter)
+.use(TanstackAdapter.plugin)
+*/
+
 export interface ServerState {
   plugin: {
     install: (app: App) => void;

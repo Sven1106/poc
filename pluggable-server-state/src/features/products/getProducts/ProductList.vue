@@ -3,14 +3,14 @@ import { defineComponent, ref, watch } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 import type { Product } from '@/api/generated/models';
-import { useProductsResource } from '@/serverState';
+import { useGetAllProducts } from '@/api/generated/client';
 
 export default defineComponent({
   name: 'ProductList',
   emits: ['product-selected'],
   components: { DataTable, Column },
   setup(_, { emit }) {
-    const { products, error, isLoading } = useProductsResource().list();
+    const { data, isLoading, error } = useGetAllProducts();
     const selectedProduct = ref<Product | null>(null);
 
     watch(selectedProduct, (newProduct) => {
@@ -22,7 +22,7 @@ export default defineComponent({
     });
 
     return {
-      products,
+      data,
       error,
       isLoading,
       selectedProduct,
@@ -35,9 +35,9 @@ export default defineComponent({
   <div v-if="isLoading">Loading...</div>
   <div v-else-if="error">An error has occurred: {{ error }}</div>
   <DataTable
-    v-else-if="products"
+    v-else-if="data"
     v-model:selection="selectedProduct"
-    :value="products"
+    :value="data"
     dataKey="id"
     tableStyle="min-width: 50rem"
   >

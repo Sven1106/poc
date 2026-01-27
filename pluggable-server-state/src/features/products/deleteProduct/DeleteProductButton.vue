@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Button from 'primevue/button';
-import { useProductsResource } from '@/serverState';
+import { useDeleteProduct, invalidateGetAllProducts } from '@/api/generated/client';
 
 export default defineComponent({
   name: 'DeleteProductButton',
@@ -14,14 +14,19 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
-    const { deleteProduct, error } = useProductsResource().remove(props.id, {
-      onSuccess: () => emit('deleted', props.id),
+    const { mutate, error } = useDeleteProduct({
+      mutation: {
+        onSuccess: (_, {}, __, { client }) => {
+          invalidateGetAllProducts(client);
+          emit('deleted', props.id);
+        },
+      },
     });
-    return { deleteProduct, error };
+    return { mutate, error };
   },
 });
 </script>
 
 <template>
-  <Button label="Delete Product" severity="danger" @click="deleteProduct(id)" />
+  <Button label="Delete Product" severity="danger" @click="mutate({ id })" />
 </template>

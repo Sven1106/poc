@@ -1,8 +1,8 @@
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools';
 import { VueQueryPlugin } from '@tanstack/vue-query';
 import { type DefineComponent } from 'vue';
-import { ProductsResourceAdapter } from '@/serverState/adapters/tanstack/productsResourceAdapter';
-import type { ServerState } from '@/serverState';
+import { ProductsResourceAdapter } from '@/infra/serverState/adapters/tanstack/productsResourceAdapter';
+import type { ServerState } from '@/infra/serverState';
 
 export const TanstackAdapter: ServerState = {
   plugin: {
