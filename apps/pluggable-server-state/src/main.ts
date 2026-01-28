@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { TanstackAdapter } from './infra/serverState/adapters/tanstack/tanstackAdapter';
+import { TanstackAdapter } from '@/infra/serverState/adapters/tanstack/tanstackAdapter';
 import { ServerStateKey } from '@/infra/serverState';
 
 const app = createApp(App);

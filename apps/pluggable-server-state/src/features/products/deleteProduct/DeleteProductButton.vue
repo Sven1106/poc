@@ -1,9 +1,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { Button } from 'ui-components';
 import { useDeleteProduct, invalidateGetAllProducts } from '@/api/generated/client';
 
 export default defineComponent({
   name: 'DeleteProductButton',
+  components: {
+    Button,
+  },
   emits: ['deleted'],
   props: {
     id: {
@@ -26,7 +30,5 @@ export default defineComponent({
 </script>
 
 <template>
-  <button style="background-color: red; color: white" @click="mutate({ id })">
-    Delete Product
-  </button>
+  <Button label="Delete Product" size="small" @click="mutate({ id: id })"></Button>
 </template>

@@ -3,6 +3,19 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/ui-components.umd.cjs",
+  "module": "./dist/ui-components.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/ui-components.js",
+      "require": "./dist/ui-components.umd.cjs"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check \"build-only {@}\" --",
@@ -13,20 +26,22 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "vite-plugin-css-injected-by-js": "^3.5.2",
     "vue": "^3.5.26"
   },
   "devDependencies": {
+    "@storybook/vue3-vite": "^10.2.1",
     "@tsconfig/node24": "^24.0.4",
     "@types/node": "^24.10.9",
     "@vitejs/plugin-vue": "^6.0.3",
     "@vue/tsconfig": "^0.8.1",
     "npm-run-all2": "^8.0.4",
+    "storybook": "^10.2.1",
     "typescript": "~5.9.3",
     "vite": "beta",
+    "vite-plugin-dts": "^4.5.4",
     "vite-plugin-vue-devtools": "^8.0.5",
-    "vue-tsc": "^3.2.2",
-    "storybook": "^10.2.1",
-    "@storybook/vue3-vite": "^10.2.1"
+    "vue-tsc": "^3.2.2"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"
